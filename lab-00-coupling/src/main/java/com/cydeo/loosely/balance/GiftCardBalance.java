@@ -1,7 +1,8 @@
-package com.cydeo;
+package com.cydeo.loosely.balance;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -9,13 +10,12 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class GiftCardBalance{
-    private UUID userId;
-    private BigDecimal amount;
+@ToString
+public class GiftCardBalance extends Balance{
+
 
     public GiftCardBalance(UUID userId, BigDecimal amount) {
-        this.userId = userId;
-        this.amount = amount;
+        super(userId,amount);
     }
 
     public BigDecimal addBalance(BigDecimal amount) {
@@ -24,7 +24,9 @@ public class GiftCardBalance{
                         .divide(new BigDecimal(100)
                                 , MathContext.DECIMAL64);
 
-        setAmount(this.amount.add(amount).add(bonusAmount));
-        return this.amount;
+        setAmount(getAmount().add(amount).add(bonusAmount));
+        return getAmount();
     }
+
+
 }

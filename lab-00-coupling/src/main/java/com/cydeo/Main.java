@@ -1,5 +1,8 @@
 package com.cydeo;
-import com.cydeo.tightly.BalanceService;
+
+import com.cydeo.loosely.BalanceManager;
+import com.cydeo.loosely.balance.CustomerBalance;
+import com.cydeo.loosely.balance.GiftCardBalance;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -14,11 +17,15 @@ public class Main {
         customerBalance.addBalance(new BigDecimal(150));
         giftCardBalance.addBalance(new BigDecimal(120));
 
-        BalanceService balanceService =
-                new BalanceService(customerBalance, giftCardBalance);
+        CustomerBalance customerBalance1 = new CustomerBalance(UUID.randomUUID(), BigDecimal.ZERO);
+        GiftCardBalance giftCardBalance1 = new GiftCardBalance(UUID.randomUUID(), BigDecimal.ZERO);
 
-        System.out.println(balanceService.checkoutFromCustomerBalance(new BigDecimal(80)));
-        System.out.println(balanceService.checkoutFromGiftBalance(new BigDecimal(80)));
+        Boolean result = new BalanceManager().checkout(customerBalance,BigDecimal.valueOf(200));
+        System.out.println(result);
+        Boolean result1 = new BalanceManager().checkout(giftCardBalance,BigDecimal.valueOf(100));
+        System.out.println(result1);
+
+
     }
 
 }
