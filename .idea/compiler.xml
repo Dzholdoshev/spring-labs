@@ -7,11 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="spring-05-thymeleaf" />
+        <module name="employee-registration-project" />
+        <module name="pizza-cloud" />
+        <module name="lab-01-ioc" />
         <module name="lab-02-di" />
         <module name="lab-03-springboot" />
-        <module name="employee-registration-project" />
         <module name="lab-00-coupling" />
-        <module name="lab-01-ioc" />
         <module name="lab-04-springmvc" />
       </profile>
     </annotationProcessing>
@@ -27,6 +29,8 @@
       <module name="lab-02-di" options="-parameters" />
       <module name="lab-03-springboot" options="-parameters" />
       <module name="lab-04-springmvc" options="-parameters" />
+      <module name="pizza-cloud" options="-parameters" />
+      <module name="spring-05-thymeleaf" options="-parameters" />
     </option>
   </component>
 </project>

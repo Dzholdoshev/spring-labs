@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/lab-03-springboot/pom.xml" />
         <option value="$PROJECT_DIR$/lab-04-springmvc/pom.xml" />
         <option value="$PROJECT_DIR$/employee-registration-project/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-05-thymeleaf/pom.xml" />
+        <option value="$PROJECT_DIR$/pizza-cloud/pom.xml" />
       </list>
     </option>
   </component>
