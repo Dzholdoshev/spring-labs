@@ -8,8 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-05-thymeleaf" />
+        <module name="lab-springData-cinema" />
         <module name="employee-registration-project" />
         <module name="pizza-cloud" />
+        <module name="spring-11-Data-TableCreation" />
         <module name="lab-01-ioc" />
         <module name="lab-02-di" />
         <module name="lab-03-springboot" />
@@ -18,6 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="spring-11-Data-TableCreation" target="11" />
       <module name="Test" target="18" />
     </bytecodeTargetLevel>
   </component>
@@ -29,8 +32,10 @@
       <module name="lab-02-di" options="-parameters" />
       <module name="lab-03-springboot" options="-parameters" />
       <module name="lab-04-springmvc" options="-parameters" />
+      <module name="lab-springData-cinema" options="-parameters" />
       <module name="pizza-cloud" options="-parameters" />
       <module name="spring-05-thymeleaf" options="-parameters" />
+      <module name="spring-11-Data-TableCreation" options="-parameters" />
     </option>
   </component>
 </project>
