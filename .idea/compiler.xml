@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-05-thymeleaf" />
-        <module name="lab-springData-cinema" />
         <module name="employee-registration-project" />
         <module name="pizza-cloud" />
         <module name="spring-11-Data-TableCreation" />
@@ -20,6 +19,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="lab-springData-cinema" target="11" />
       <module name="spring-11-Data-TableCreation" target="11" />
       <module name="Test" target="18" />
     </bytecodeTargetLevel>
