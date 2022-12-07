@@ -25,4 +25,7 @@ public interface DiscountRepository extends JpaRepository<Discount, Long> {
     List<Discount> findAllByRangeBetweenAmount(BigDecimal startAmount, BigDecimal endAmount);
 
 
+    //Get List of Discounts by Name
+    Discount findByName(String name);
+
 }

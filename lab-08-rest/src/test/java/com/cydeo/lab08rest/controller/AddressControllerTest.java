@@ -53,7 +53,7 @@ class AddressControllerTest {
     }
 
     @Test
-    public void updateAddress() throws Exception {
+    public void updateAddress() throws Exception  {
         AddressDTO addressDTO = new AddressDTO();
         addressDTO.setId(1L);
         addressDTO.setCustomerId(1L);
