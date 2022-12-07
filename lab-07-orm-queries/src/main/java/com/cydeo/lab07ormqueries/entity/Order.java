@@ -41,9 +41,9 @@ public class Order {
         return "Order{" +
                 "paidPrice=" + paidPrice +
                 ", totalPrice=" + totalPrice +
-                ", cart=" + cart +
-                ", customer=" + customer +
-                ", payment=" + payment +
+                ", cart=" + cart.getId() +
+                ", customer=" + customer.getId() +
+                ", payment=" + payment.getId() +
                 '}'+"\n";
     }
 }
