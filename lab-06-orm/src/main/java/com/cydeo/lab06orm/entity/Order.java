@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -18,8 +19,8 @@ public class Order {
     private Long id;
 
 
-    private Double paidPrice;
-    private Double totalPrice;
+    private BigDecimal paidPrice;
+    private BigDecimal totalPrice;
 
     @OneToOne
     @JoinColumn(name = "cart_id")
