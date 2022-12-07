@@ -58,4 +58,5 @@ public class DataGenerator {
                 "WestVirginia",
                 "Wyoming");
     }
+
 }
