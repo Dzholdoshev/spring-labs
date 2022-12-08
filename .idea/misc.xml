@@ -14,8 +14,16 @@
         <option value="$PROJECT_DIR$/spring-05-thymeleaf/pom.xml" />
         <option value="$PROJECT_DIR$/pizza-cloud/pom.xml" />
         <option value="$PROJECT_DIR$/lab-springData-cinema/pom.xml" />
+        <option value="$PROJECT_DIR$/lab-06-orm/pom.xml" />
+        <option value="$PROJECT_DIR$/lab-07-orm-queries/pom.xml" />
+        <option value="$PROJECT_DIR$/lab-05-thymeleaf/pom.xml" />
+        <option value="$PROJECT_DIR$/lab-00-pizza-cloud/pom.xml" />
+        <option value="$PROJECT_DIR$/lab-08-rest/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="openjdk-18" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
 </project>
