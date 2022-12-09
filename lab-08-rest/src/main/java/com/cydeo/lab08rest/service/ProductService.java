@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProductService {
    void createProduct(ProductDTO productDTO);
-   void updateProduct(ProductDTO productDTO);
+ ProductDTO updateProduct(ProductDTO productDTO);
     List<ProductDTO> getProductList();
     List<ProductDTO> getTop3ProductList();
     ProductDTO getProductListByName(String name);
@@ -17,8 +17,7 @@ public interface ProductService {
     Integer findAllByPrice(BigDecimal price);
     Integer countProductByPriceGreaterThan(BigDecimal price);
     Integer countAllByPriceAndQuantity(BigDecimal price, Integer quantity);
-
-
+    List<ProductDTO> retrieveProductByCategoryAndPrice(List<Long> categoryList, BigDecimal price);
 
 
 

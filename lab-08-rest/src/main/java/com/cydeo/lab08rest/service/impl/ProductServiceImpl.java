@@ -2,6 +2,7 @@ package com.cydeo.lab08rest.service.impl;
 
 import com.cydeo.lab08rest.dto.ProductDTO;
 import com.cydeo.lab08rest.entity.Product;
+import com.cydeo.lab08rest.mapper.MapperUtil;
 import com.cydeo.lab08rest.mapper.ProductMapper;
 import com.cydeo.lab08rest.repository.ProductRepository;
 import com.cydeo.lab08rest.service.ProductService;
@@ -16,10 +17,12 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final MapperUtil mapperUtil;
 
-    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper, MapperUtil mapperUtil) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
+        this.mapperUtil = mapperUtil;
     }
 
 
@@ -30,8 +33,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void updateProduct(ProductDTO productDTO) {
-        productRepository.save(productMapper.convertToEntity(productDTO));
+    public ProductDTO updateProduct(ProductDTO productDTO) {
+        Product product = productRepository.save(mapperUtil.convert(productDTO, new Product()));
+        return mapperUtil.convert(product, new ProductDTO());
     }
 
     @Override
@@ -97,6 +101,13 @@ public class ProductServiceImpl implements ProductService {
     public Integer countAllByPriceAndQuantity(BigDecimal price, Integer quantity) {
         Integer result = productRepository.countAllByPriceAndQuantity(price,quantity);
         return result;
+    }
+
+    @Override
+    public List<ProductDTO> retrieveProductByCategoryAndPrice(List<Long> categoryList, BigDecimal price) {
+        return productRepository.retrieveProductListByCategory(categoryList,price).stream()
+                .map(productMapper::convertToDto)
+                .collect(Collectors.toList());
     }
 
 

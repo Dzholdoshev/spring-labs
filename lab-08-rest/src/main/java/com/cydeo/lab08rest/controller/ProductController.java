@@ -1,6 +1,7 @@
 package com.cydeo.lab08rest.controller;
 
 import com.cydeo.lab08rest.dto.ProductDTO;
+import com.cydeo.lab08rest.dto.ProductRequest;
 import com.cydeo.lab08rest.entity.Product;
 import com.cydeo.lab08rest.mapper.ProductMapper;
 import com.cydeo.lab08rest.model.ResponseWrapper;
@@ -32,8 +33,10 @@ public class ProductController {
     };
     @PutMapping
     ResponseEntity<ResponseWrapper> updateProduct(@RequestBody ProductDTO productDTO){
-        productService.createProduct(productDTO);
-        return ResponseEntity.ok(new ResponseWrapper("Product is updated", productDTO, HttpStatus.OK));
+
+        return ResponseEntity.ok(new ResponseWrapper("Product are successfully updated"
+                , productService.updateProduct(productDTO), HttpStatus.OK));
+
     };
     @GetMapping
     ResponseEntity<ResponseWrapper>  getProductList(){
@@ -72,6 +75,13 @@ public class ProductController {
         Integer result = productService.countAllByPriceAndQuantity(price,quantity);
         return ResponseEntity.ok(new ResponseWrapper("Products are successfully retrieved", result, HttpStatus.OK));
     };
+
+    @PostMapping("/categoryandprice")
+    ResponseEntity<ResponseWrapper> retrieveProductByCategoryAndPrice(@RequestBody ProductRequest request){
+      List<ProductDTO> productDTOList = productService.retrieveProductByCategoryAndPrice(request.getCategoryList(),request.getPrice());
+                return ResponseEntity.ok(new ResponseWrapper("Products are successfully retrieved", productDTOList, HttpStatus.OK));
+
+    }
 
 
 

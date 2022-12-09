@@ -9,7 +9,7 @@ public interface CustomerService {
    List<CustomerDTO> getCustomerListByEmail(String email);
    void createCustomer(CustomerDTO customerDTO);
    void updateCustomer(CustomerDTO customerDTO);
-
+   CustomerDTO findById(Long customerId);
 
 
 }

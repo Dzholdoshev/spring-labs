@@ -31,8 +31,8 @@ private final OrderMapper orderMapper;
     }
     @PutMapping
     public ResponseEntity<ResponseWrapper>  updateOrder(@RequestBody OrderDTO orderDTO){
-        orderService.createOrder(orderDTO);
-        return ResponseEntity.ok(new ResponseWrapper("Order is updated", orderDTO, HttpStatus.OK));
+        return ResponseEntity.ok(new ResponseWrapper("Order are successfully updated"
+                , orderService.updateOrder(orderDTO), HttpStatus.OK));
     }
     @GetMapping
     public ResponseEntity<ResponseWrapper> getAddressList() {

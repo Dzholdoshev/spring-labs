@@ -3,6 +3,7 @@ package com.cydeo.lab08rest.service.impl;
 import com.cydeo.lab08rest.dto.CustomerDTO;
 import com.cydeo.lab08rest.entity.Customer;
 import com.cydeo.lab08rest.mapper.CustomerMapper;
+import com.cydeo.lab08rest.mapper.MapperUtil;
 import com.cydeo.lab08rest.repository.CustomerRepository;
 import com.cydeo.lab08rest.service.CustomerService;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
+    private final MapperUtil mapperUtil;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper, MapperUtil mapperUtil) {
         this.customerRepository = customerRepository;
         this.customerMapper = customerMapper;
+        this.mapperUtil = mapperUtil;
     }
 
     @Override
@@ -47,5 +50,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void updateCustomer(CustomerDTO customerDTO) {
         customerRepository.save(customerMapper.convertToEntity(customerDTO));
+    }
+
+    @Override
+    public CustomerDTO findById(Long customerId) {
+        return customerRepository.findById(customerId).stream()
+                .map(customer -> mapperUtil.convert(customer, new CustomerDTO())).findFirst().orElseThrow();
     }
 }

@@ -1,14 +1,15 @@
 package com.cydeo.lab08rest.service.impl;
 
-import com.cydeo.lab08rest.dto.CustomerDTO;
 import com.cydeo.lab08rest.dto.OrderDTO;
-import com.cydeo.lab08rest.entity.Customer;
-import com.cydeo.lab08rest.entity.Discount;
-import com.cydeo.lab08rest.entity.Order;
+import com.cydeo.lab08rest.entity.*;
 import com.cydeo.lab08rest.enums.PaymentMethod;
+import com.cydeo.lab08rest.mapper.MapperUtil;
 import com.cydeo.lab08rest.mapper.OrderMapper;
 import com.cydeo.lab08rest.repository.OrderRepository;
+import com.cydeo.lab08rest.service.CartService;
+import com.cydeo.lab08rest.service.CustomerService;
 import com.cydeo.lab08rest.service.OrderService;
+import com.cydeo.lab08rest.service.PaymentService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +19,19 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
+    private final MapperUtil mapperUtil;
+    private final CustomerService customerService;
+    private final PaymentService paymentService;
+    private final CartService cartService;
     private final OrderMapper orderMapper;
 
-    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper) {
+
+    public OrderServiceImpl(OrderRepository orderRepository, MapperUtil mapperUtil, CustomerService customerService, PaymentService paymentService, CartService cartService, OrderMapper orderMapper) {
         this.orderRepository = orderRepository;
+        this.mapperUtil = mapperUtil;
+        this.customerService = customerService;
+        this.paymentService = paymentService;
+        this.cartService = cartService;
         this.orderMapper = orderMapper;
     }
 
@@ -32,8 +42,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrder(OrderDTO orderDTO) {
-        orderRepository.save(orderMapper.convertToEntity(orderDTO));
+    public OrderDTO updateOrder(OrderDTO orderDTO) {
+        Order order = mapperUtil.convert(orderDTO, new Order());
+        order.setCustomer(mapperUtil.convert(customerService.findById(orderDTO.getCustomerId()), new Customer()));
+        order.setPayment(mapperUtil.convert(paymentService.findById(orderDTO.getPaymentId()), new Payment()));
+        order.setCart(mapperUtil.convert(cartService.findById(orderDTO.getCartId()), new Cart()));
+        order.setPaidPrice(orderDTO.getPaidPrice());
+        order.setTotalPrice(orderDTO.getTotalPrice());
+        Order updatedOrder = orderRepository.save(order);
+
+        return mapperUtil.convert(updatedOrder, new OrderDTO());
     }
 
     @Override
