@@ -46,5 +46,6 @@ public class DiscountServiceImpl implements DiscountService {
     public void updateDiscount(DiscountDTO discountDTO) {
         discountRepository.save(discountMapper.convertToEntity(discountDTO));
 
+
     }
 }

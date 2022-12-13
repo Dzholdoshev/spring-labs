@@ -49,7 +49,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void updateCustomer(CustomerDTO customerDTO) {
-        customerRepository.save(customerMapper.convertToEntity(customerDTO));
+        Customer customer = customerRepository.findByUserName(customerDTO.getUserName());
+
+        customer.setEmail(customerDTO.getEmail());
+        customer.setFirstName(customerDTO.getFirstName());
+        customer.setLastName(customerDTO.getLastName());
+
+        Customer savedCustomer = customerRepository.save(customer);
+
+
     }
 
     @Override
@@ -57,4 +65,6 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findById(customerId).stream()
                 .map(customer -> mapperUtil.convert(customer, new CustomerDTO())).findFirst().orElseThrow();
     }
+
+
 }

@@ -26,7 +26,9 @@ public class DiscountController {
     public ResponseEntity<ResponseWrapper> getDiscountList(){
 
         List<DiscountDTO> discountDTOList = discountService.getDiscountList();
-        return ResponseEntity.ok(new ResponseWrapper("List of Discounts is retrieved", discountDTOList, HttpStatus.OK));
+        return ResponseEntity.ok(new ResponseWrapper("List of Discounts is retrieved",
+                discountDTOList,
+                HttpStatus.OK));
     };
     @GetMapping("/{name}")
     public ResponseEntity<ResponseWrapper> getDiscountListByName(@PathVariable ("name") String name){
